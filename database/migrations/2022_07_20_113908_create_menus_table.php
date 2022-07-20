@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string("entree");
-            $table->string("plat");
-            $table->string("dessert");
+            $table->string("entrees");
+            $table->string("plats");
+            $table->string("desserts");
+            $table->string("boissons");
             $table->float("prixHT");
             $table->float("tva");
             $table->float("prixTTC");
