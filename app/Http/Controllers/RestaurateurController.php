@@ -64,7 +64,8 @@ class RestaurateurController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurateur = Restaurateur::findorfail($id);
+        return response()->json(["message" => "Profil", 'restaurateur' => $restaurateur]);
     }
 
     /**
@@ -75,7 +76,8 @@ class RestaurateurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $restaurateur = Restaurateur::findorfail($id);
+        return response()->json(['restaurateur' => $restaurateur]);
     }
 
     /**
@@ -87,7 +89,18 @@ class RestaurateurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $restaurateur = Restaurateur::findorfail($id);
+
+        $restaurateur->lastname = $request->lastname;
+        $restaurateur->firstname = $request->firstname;
+        $restaurateur->siret = $request->siret;
+        $restaurateur->email = $request->email;
+        $restaurateur->phone = $request->phone;
+        $restaurateur->password = $request->password;
+
+        $restaurateur->save();
+
+        return response()->json(["message" => "Modifier le profil", 'restaurateur' => $restaurateur]);
     }
 
     /**
@@ -98,6 +111,10 @@ class RestaurateurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurateur = Restaurateur::findorfail($id);
+
+        $restaurateur->delete();
+
+        return response()->json(["message" => "Supprimer le profil", 'restaurateur' => $restaurateur]);
     }
 }
