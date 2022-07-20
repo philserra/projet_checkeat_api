@@ -14,7 +14,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        
+        $restaurants = Restaurant::all();
+        return response()->json(['restaurants' => $restaurants]);
     }
 
     /**
@@ -69,7 +70,10 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurants = Restaurant::findOrFail($id);
+        return response()->json([
+            "restaurants" => $restaurants
+        ]);
     }
 
     /**
@@ -80,7 +84,10 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $restaurants = Restaurant::findOrFail($id);
+        return response()->json([
+            "restaurants" => $restaurants
+        ]);
     }
 
     /**
@@ -92,7 +99,20 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $restaurants = Restaurant::findOrFail($id);
+
+        $restaurants->name = $request->name;
+        $restaurants->adress = $request->adress;
+        $restaurants->zip = $request->zip;
+        $restaurants->city = $request->city;
+        $restaurants->email = $request->email;
+        $restaurants->timetable = $request->timetable;
+        $restaurants->capacity = $request->capacity;
+        $restaurants->id_restaurateur = $request->id_restaurateur;
+
+        $restaurants->save();
+
+        return response()->json(['restaurants' => $restaurants]);
     }
 
     /**
@@ -103,6 +123,10 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurants = Restaurant::findOrFail($id);
+
+        $restaurants->delete();
+
+        return response()->json(['restaurants' => $restaurants]);
     }
 }
