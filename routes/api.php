@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::resources('/home', MenuController::class);
+Route::resource('/restaurants', RestaurantController::class);
+// Route::post('/restaurant', [RestaurantController::class , 'store']);
