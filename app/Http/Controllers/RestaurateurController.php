@@ -53,7 +53,7 @@ class RestaurateurController extends Controller
             'password' => $request->password,
         ]);
 
-        return response()->json(["message" => "Profil crée", 'restaurateur' => $restaurateur]);
+        return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
 
     /**
@@ -65,7 +65,7 @@ class RestaurateurController extends Controller
     public function show($id)
     {
         $restaurateur = Restaurateur::findorfail($id);
-        return response()->json(["message" => "Profil", 'restaurateur' => $restaurateur]);
+        return response()->json(["message" => "Profil crée", 'restaurateur' => $restaurateur]);
     }
 
     /**
@@ -115,6 +115,6 @@ class RestaurateurController extends Controller
 
         $restaurateur->delete();
 
-        return response()->json(["message" => "Supprimer le profil", 'restaurateur' => $restaurateur]);
+        return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
 }
