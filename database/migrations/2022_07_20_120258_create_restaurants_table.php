@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('adress');
             $table->integer('zip');
             $table->string('city');
+            $table->string('tel');
             $table->string('email');
             $table->string('timetable');
             $table->integer('capacity');
