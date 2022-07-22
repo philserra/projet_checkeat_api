@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('timetable');
             $table->integer('capacity');
-            $table->integer('id_restaurateur');
+            $table->unsignedBigInteger('id_restaurateur')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_restaurateur')->references('id')->on('restaurateurs');
         });
     }
 

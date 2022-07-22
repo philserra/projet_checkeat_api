@@ -9,4 +9,12 @@ class Restaurant extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function contact()
+    {
+        
+        return $this->belongsTo(Restaurateur::class, 'id_restaurateur', 'id');
+    }
+
+
 }

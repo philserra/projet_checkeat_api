@@ -3,6 +3,7 @@
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RestaurateurController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::resource('/restaurants', RestaurantController::class);
 Route::resource('/restaurateurs', RestaurateurController::class);
 
 // Route::post('/restaurateurs', [RestaurateurController::class, 'store'])->name('restaurateurs.store');
+
+Route::post('/register', [UserController::class, 'store'])->name('users.store');
+
+Route::post('/login', [UserController::class, 'login'])->name('users.login');
