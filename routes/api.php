@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->resource('/restaurants', RestaurantController::class);
 // Route::post('/restaurant', [RestaurantController::class , 'store']);
 
+Route::middleware('auth:sanctum')->get('/restaurateurs/profile', [RestaurateurController::class, 'profile'])->name("restaurateurs.profile");
 
 Route::resource('/restaurateurs', RestaurateurController::class);
 

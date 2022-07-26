@@ -72,9 +72,9 @@ class RestaurateurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function profile()
     {
-        $restaurateur = Restaurateur::findorfail($id);
+        $restaurateur = Auth::user();
         return response()->json(["message" => "Profil crée", 'restaurateur' => $restaurateur]);
     }
 
@@ -86,6 +86,7 @@ class RestaurateurController extends Controller
      */
     public function edit($id)
     {
+
         $restaurateur = Restaurateur::findorfail($id);
         return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
@@ -119,7 +120,7 @@ class RestaurateurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function supprimer($id)
     {
         $restaurateur = Restaurateur::findorfail($id);
 
