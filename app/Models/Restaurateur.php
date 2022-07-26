@@ -33,4 +33,9 @@ class Restaurateur extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class, 'id_restaurateur', 'id');
+    }
 }

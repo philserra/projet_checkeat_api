@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\Constraint\IsTrue;
 
 class RestaurantController extends Controller
@@ -15,7 +16,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $user = Auth::user();
+        $restaurants = $user->restaurants;
         return response()->json(['restaurants' => $restaurants]);
     }
 

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::resources('/home', MenuController::class);
-Route::resource('/restaurants', RestaurantController::class);
+Route::middleware('auth:sanctum')->resource('/restaurants', RestaurantController::class);
 // Route::post('/restaurant', [RestaurantController::class , 'store']);
 
 
