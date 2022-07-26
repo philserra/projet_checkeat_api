@@ -48,9 +48,9 @@ class RestaurantController extends Controller
             'email' => 'required|email',
             'timetable' => 'required|numeric',
             'capacity' => 'required|numeric',
-            'id_restaurateur' => 'required|numeric'
-
         ]);
+
+        $id_restaurateur = Auth::id();
 
         $restaurant = Restaurant::create([
             'name' => $request->name,
@@ -61,7 +61,7 @@ class RestaurantController extends Controller
             'email' => $request->email,
             'timetable' => $request->timetable,
             'capacity' => $request->capacity,
-            'id_restaurateur' => $request->id_restaurateur,
+            'id_restaurateur' => $id_restaurateur,
         ]);
 
         return response()->json(['message' => true, 'restaurant' => $restaurant]);
