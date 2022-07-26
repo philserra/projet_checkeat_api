@@ -13,25 +13,4 @@ use Illuminate\Support\Facades\Auth;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-
-    // public function login(Request $request)
-    // {
-    //     $restaurateur = [
-    //         'email' => $request->email,
-    //         'password' => $request->password,
-    //     ];
-    //     if (Auth::attempt($restaurateur)) {
-    //         $success = true;
-    //         $message = 'ok';
-    //     } else {
-    //         $success = false;
-    //         $message = 'pas ok';
-    //     }
-    //     $response = [
-    //         'success' => $success,
-    //         'message' => $message
-    //     ];
-    //     return response()->json($response);
-    // }
 }

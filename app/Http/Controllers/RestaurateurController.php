@@ -63,7 +63,7 @@ class RestaurateurController extends Controller
             'token_type' => 'Bearer',
         ]);
 
-        // return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
+        return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
 
     /**
@@ -87,7 +87,7 @@ class RestaurateurController extends Controller
     public function edit($id)
     {
         $restaurateur = Restaurateur::findorfail($id);
-        return response()->json(['restaurateur' => $restaurateur]);
+        return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
 
     /**

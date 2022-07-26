@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\IsTrue;
 
 class RestaurantController extends Controller
 {
@@ -61,7 +62,7 @@ class RestaurantController extends Controller
             'id_restaurateur' => $request->id_restaurateur,
         ]);
 
-        return response()->json(['message' => 'Restaurant ajouté','restaurant'=> $restaurant]);
+        return response()->json(['message' => true, 'restaurant' => $restaurant]);
     }
 
     /**
@@ -107,6 +108,7 @@ class RestaurantController extends Controller
         $restaurants->adress = $request->adress;
         $restaurants->zip = $request->zip;
         $restaurants->city = $request->city;
+        $restaurants->tel = $request->tel;
         $restaurants->email = $request->email;
         $restaurants->timetable = $request->timetable;
         $restaurants->capacity = $request->capacity;

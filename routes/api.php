@@ -33,8 +33,6 @@ Route::resource('/menu', MenuController::class);
 
 // Route::get('/menu', [MenuController::class, "index"]);
 
-
-
 // Route::post('/restaurateurs', [RestaurateurController::class, 'store'])->name('restaurateurs.store');
 
 // routes/api.php
