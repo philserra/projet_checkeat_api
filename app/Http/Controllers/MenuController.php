@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -13,7 +14,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $liste = Menu::all();
+        return response()->json(["liste" => $liste]);
     }
 
     /**
@@ -34,7 +36,18 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = Menu::create([
+            "name" => $request->name,
+            "category" => $request->category,
+            "priceHt" => $request->priceHt,
+            "tva" => $request->tva,
+            'priceTtc' => round($request->priceHt * ($request->tva + 100) / 100, 2,  PHP_ROUND_HALF_UP), // Calcul du prix TTC avec arrondi à 2 décimales
+            'id_restaurateur' => $request->id_restaurateur,
+
+
+        ]);
+
+        return response()->json(["message" == true, "name" => $name]);
     }
 
     /**
@@ -79,6 +92,10 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $menu = Menu::findOrFail($id); // Récupération d'une facture par son id
+
+        $menu->delete(); // Suppression de la facture
+
+        // return view('invoices.deleted', ['invoice' => $invoice]); 
     }
 }

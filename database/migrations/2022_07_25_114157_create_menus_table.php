@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string("entrees");
-            $table->string("plats");
-            $table->string("desserts");
-            $table->string("boissons");
-            $table->float("prixHT");
-            $table->float("tva");
-            $table->float("prixTTC");
-            $table->integer('id_restaurant');
+            $table->string('name');
+            $table->string('category');
+            $table->string('priceHt');
+            $table->string('tva');
+            $table->string('priceTtc');
+            $table->unsignedBigInteger('id_restaurateur')->nullable();
             $table->timestamps();
+            $table->foreign('id_restaurateur')->references('id')->on('restaurateurs');
         });
     }
 

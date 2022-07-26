@@ -25,6 +25,13 @@ Route::resource('/restaurants', RestaurantController::class);
 
 Route::resource('/restaurateurs', RestaurateurController::class);
 
+
+Route::resource('/menu', MenuController::class);
+
+// Route::get('/menu', [MenuController::class, "index"]);
+
+
+
 // Route::post('/restaurateurs', [RestaurateurController::class, 'store'])->name('restaurateurs.store');
 
 Route::post('/register', [UserController::class, 'store'])->name('users.store');
