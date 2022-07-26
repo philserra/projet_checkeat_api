@@ -106,7 +106,7 @@ class RestaurateurController extends Controller
         $restaurateur->siret = $request->siret;
         $restaurateur->email = $request->email;
         $restaurateur->phone = $request->phone;
-        $restaurateur->password = $request->password;
+        $restaurateur->password = Hash::make($request->password);
 
         $restaurateur->save();
 
