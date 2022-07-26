@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RestaurateurController;
@@ -27,6 +30,10 @@ Route::resource('/restaurateurs', RestaurateurController::class);
 
 // Route::post('/restaurateurs', [RestaurateurController::class, 'store'])->name('restaurateurs.store');
 
-Route::post('/register', [UserController::class, 'store'])->name('users.store');
+// routes/api.php
 
-Route::post('/login', [UserController::class, 'login'])->name('users.login');
+// routes/api.php
+
+Route::post('/login', [RestaurateurController::class, 'login']);
+
+Route::post('/logout', [RestaurateurController::class, 'logout']);

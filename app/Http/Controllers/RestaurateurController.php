@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RestaurateurController extends Controller
 {
@@ -50,10 +52,18 @@ class RestaurateurController extends Controller
             'siret' => $request->siret,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => $request->password,
+            'password' =>  Hash::make($request->password),
         ]);
 
-        return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
+        $token = $restaurateur->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => true,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
+
+        // return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
 
     /**
@@ -116,5 +126,32 @@ class RestaurateurController extends Controller
         $restaurateur->delete();
 
         return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
+    }
+
+    public function login(Request $request)
+    {
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json([
+                'message' => 'Invalid login details'
+            ], 401);
+        }
+
+        $restaurateur = Restaurateur::where('email', $request['email'])->firstOrFail();
+
+        $token = $restaurateur->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => true,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return [
+            'message' => 'user logged out'
+        ];
     }
 }

@@ -3,17 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Restaurateur extends Model
+class Restaurateur extends Authenticatable
 {
-    use HasFactory;
-    protected $guarded = ["id"];
+    use HasApiTokens, HasFactory, Notifiable;
 
-    public function invoice()
-    {
-       
-        return $this->hasOne(Restaurant::class, 'id_restaurant', 'id');
-    }
+    protected $fillable = [
+        'lastname',
+        'firstname',
+        'siret',
+        'email',
+        'phone',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
-
