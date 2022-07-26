@@ -92,10 +92,10 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id); // Récupération d'une facture par son id
+        $menu = Menu::findOrFail($id);
 
-        $menu->delete(); // Suppression de la facture
+        $menu->delete();
 
-        // return view('invoices.deleted', ['invoice' => $invoice]); 
+        return response()->json(["message" => true, 'menu' => $menu]);
     }
 }
