@@ -14,6 +14,11 @@ class Restaurant extends Model
     public function contact()
     {
 
-        return $this->belongsTo(Restaurateur::class, 'id_restaurateur', 'id');
+        return $this->belongsTo(Restaurateur::class, 'id_restaurant', 'id');
+    }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'id_restaurant', 'id');
     }
 }

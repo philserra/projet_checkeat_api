@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -36,18 +37,21 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $name = Menu::create([
+
+        $id_restaurant = Auth::id();
+
+        $menu = Menu::create([
             "name" => $request->name,
             "category" => $request->category,
             "priceHt" => $request->priceHt,
             "tva" => $request->tva,
             'priceTtc' => round($request->priceHt * ($request->tva + 100) / 100, 2,  PHP_ROUND_HALF_UP), // Calcul du prix TTC avec arrondi à 2 décimales
-            'id_restaurateur' => $request->id_restaurateur,
+            'id_restaurant' => $id_restaurant,
 
 
         ]);
 
-        return response()->json(["message" == true, "name" => $name]);
+        return response()->json(["message" == true, "menu" => $menu]);
     }
 
     /**
@@ -90,11 +94,14 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        $menu = Menu::findOrFail($id);
 
-        $menu->delete();
+        $id_restaurant = Auth::id();
+
+        $menu = Menu::findorfail();
+
+        $menu->delete($id_restaurant);
 
         return response()->json(["message" => true, 'menu' => $menu]);
     }

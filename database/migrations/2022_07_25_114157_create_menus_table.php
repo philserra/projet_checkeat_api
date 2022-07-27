@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('priceHt');
             $table->string('tva');
             $table->string('priceTtc');
-            $table->unsignedBigInteger('id_restaurateur')->nullable();
+            $table->unsignedBigInteger('id_restaurant')->nullable();
             $table->timestamps();
-            $table->foreign('id_restaurateur')->references('id')->on('restaurateurs');
+            $table->foreign('id_restaurant')->references('id')->on('restaurants')->onDelete("cascade");
         });
     }
 

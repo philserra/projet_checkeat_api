@@ -16,12 +16,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
-        // $restaurants = $user->restaurants;
-        // return response()->json(['restaurants' => $restaurants]);
-
-        $restaurants = Restaurant::all();
-        return response()->json(["restaurants" => $restaurants]);
+        $user = Auth::user();
+        $restaurants = $user->restaurants;
+        return response()->json(['restaurants' => $restaurants]);
     }
 
     /**

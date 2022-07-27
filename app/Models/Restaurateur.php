@@ -11,14 +11,7 @@ class Restaurateur extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = [
-        'lastname',
-        'firstname',
-        'siret',
-        'email',
-        'phone',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     protected $hidden = [
         // 'password',
