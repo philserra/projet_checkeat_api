@@ -23,10 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resources('/home', MenuController::class);
 Route::middleware('auth:sanctum')->resource('/restaurants', RestaurantController::class);
+// Route::get('/restaurants', [RestaurantController::class, "index"]);
+
 // Route::post('/restaurant', [RestaurantController::class , 'store']);
 
 Route::middleware('auth:sanctum')->get('/restaurateurs', [RestaurateurController::class, 'profile'])->name("restaurateurs.profile");
-Route::middleware('auth:sanctum')->post('/restaurateurs', [RestaurateurController::class, 'store'])->name("restaurateurs.store");
+Route::post('/restaurateurs', [RestaurateurController::class, 'store'])->name("restaurateurs.store");
 Route::middleware('auth:sanctum')->put('/restaurateurs', [RestaurateurController::class, 'update'])->name("restaurateurs.update");
 Route::middleware('auth:sanctum')->delete('/restaurateurs', [RestaurateurController::class, 'destroy'])->name("restaurateurs.destroy");
 
@@ -42,4 +44,4 @@ Route::resource('/menu', MenuController::class);
 
 Route::post('/login', [RestaurateurController::class, 'login']);
 
-Route::post('/logout', [RestaurateurController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/logout', [RestaurateurController::class, 'logout']);

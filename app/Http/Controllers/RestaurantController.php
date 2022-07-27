@@ -16,9 +16,12 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $restaurants = $user->restaurants;
-        return response()->json(['restaurants' => $restaurants]);
+        // $user = Auth::user();
+        // $restaurants = $user->restaurants;
+        // return response()->json(['restaurants' => $restaurants]);
+
+        $restaurants = Restaurant::all();
+        return response()->json(["restaurants" => $restaurants]);
     }
 
     /**
@@ -133,6 +136,6 @@ class RestaurantController extends Controller
 
         $restaurants->delete();
 
-        return response()->json(['restaurants' => $restaurants]);
+        return response()->json(["message" => true, 'restaurants' => $restaurants]);
     }
 }

@@ -117,9 +117,6 @@ class RestaurateurController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-        return [
-            'message' => 'user logged out'
-        ];
+        return $request->user()->currentAccessToken()->delete();
     }
 }
