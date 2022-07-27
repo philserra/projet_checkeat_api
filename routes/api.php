@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RestaurantController;
@@ -19,5 +20,6 @@ Route::middleware('auth:sanctum')->put('/restaurateurs', [RestaurateurController
 Route::middleware('auth:sanctum')->delete('/restaurateurs', [RestaurateurController::class, 'destroy'])->name("restaurateurs.destroy");
 
 Route::middleware('auth:sanctum')->resource('/restaurants', RestaurantController::class);
+Route::get('/guests', [GuestController::class, 'index'])->name('guest.index');
 
 Route::middleware('auth:sanctum')->resource('/menu', MenuController::class);

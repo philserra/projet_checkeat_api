@@ -21,6 +21,9 @@ class RestaurantController extends Controller
         return response()->json(['restaurants' => $restaurants]);
     }
 
+
+
+
     /**
      * Show the form for creating a new resource.
      *
