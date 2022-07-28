@@ -27,9 +27,9 @@ Route::middleware('auth:sanctum')->delete('/restaurateurs', [RestaurateurControl
 
 Route::middleware('auth:sanctum')->post('/restaurants', [RestaurantController::class, 'store'])->name("restaurants.store");
 Route::middleware('auth:sanctum')->get('/restaurants', [RestaurantController::class, 'profile'])->name("restaurants.index");
-Route::middleware('auth:sanctum')->put('/restaurants', [RestaurantController::class, 'update'])->name("restaurants.update");
+Route::middleware('auth:sanctum')->put('/restaurants/{id}', [RestaurantController::class, 'update'])->name("restaurants.update");
 Route::middleware('auth:sanctum')->delete('/restaurants/{id}', [RestaurantController::class, 'destroy'])->name("restaurants.destroy");
-
+Route::middleware('auth:sanctum')->get('/restaurants/{id}', [RestaurantController::class, 'show']);
 // Route::middleware('auth:sanctum')->resource('/restaurants', RestaurantController::class);
 
 // Création de 4 routes MENUS pour la méthode CRUD

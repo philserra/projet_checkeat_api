@@ -72,7 +72,6 @@ class RestaurantController extends Controller
         $restaurant->email = $request->email;
         $restaurant->timetable = $request->timetable;
         $restaurant->capacity = $request->capacity;
-        $restaurant->id_restaurateur = $request->id_restaurateur;
 
         $restaurant->save();
 
@@ -95,4 +94,17 @@ class RestaurantController extends Controller
     }
 
     // FIN METHODE CRUD //
+
+    public function show($id)
+    {
+
+        $user_id = Auth::id();
+
+        $restaurant = Restaurant::where([
+            ["id", $id],
+            ["id_restaurateur", $user_id]
+        ])->firstOrFail();
+
+        return response()->json(["restaurant" => $restaurant]);
+    }
 }
