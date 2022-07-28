@@ -10,8 +10,8 @@ class Menu extends Model
     use HasFactory;
     protected $guarded = ["id"];
 
-    public function contact()
-    {
-        return $this->belongsTo(Restaurant::class, 'id_restaurant', 'id');
-    }
+    // public function contact()
+    // {
+    //     return $this->belongsTo(Restaurant::class, 'id_restaurant', 'id');
+    // }
 }

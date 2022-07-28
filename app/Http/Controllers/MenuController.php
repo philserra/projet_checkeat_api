@@ -57,14 +57,14 @@ class MenuController extends Controller
         //
     }
 
-    public function destroy()
+    public function destroy($id)
     {
 
-        $id_restaurant = Auth::id();
+        // $id_restaurant = Auth::id();
 
-        $menu = Menu::findorfail();
+        $menu = Menu::findorfail($id);
 
-        $menu->delete($id_restaurant);
+        $menu->delete();
 
         return response()->json(["message" => true, 'menu' => $menu]);
     }

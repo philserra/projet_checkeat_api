@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/restaurants/{id}', [RestaurantControlle
 // Création de 4 routes MENUS pour la méthode CRUD
 
 // menu
-Route::middleware('auth:sanctum')->resource('/menu', MenuController::class);
+Route::resource('/menu', MenuController::class);
 
 // Route::middleware('auth:sanctum')->post('/menu', [MenuController::class, 'store'])->name("menu.store");
 // Route::middleware('auth:sanctum')->get('/menu', [MenuController::class, 'index'])->name("menu.index");
