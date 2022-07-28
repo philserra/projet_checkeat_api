@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('timetable');
             $table->integer('capacity');
             $table->unsignedBigInteger('id_restaurateur')->nullable();
+            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('id_restaurateur')->references('id')->on('restaurateurs')->onDelete("cascade");
