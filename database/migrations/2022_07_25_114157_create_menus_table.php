@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('priceTtc');
             $table->unsignedBigInteger('id_restaurant')->nullable();
             $table->timestamps();
+            $table->rememberToken();
             $table->foreign('id_restaurant')->references('id')->on('restaurants')->onDelete("cascade");
         });
     }

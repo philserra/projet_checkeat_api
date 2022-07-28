@@ -9,12 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class RestaurateurController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    // METHODE CRUD //
+
+    // Création d'une fonction pour créer un profil restaurateur
+
     public function store(Request $request)
     {
         $request->validate([
@@ -46,25 +45,16 @@ class RestaurateurController extends Controller
         return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Création d'une fonction pour afficher un profil restaurateur
+
     public function profile()
     {
         $restaurateur = Auth::user();
         return response()->json(["message" => "Profil crée", 'restaurateur' => $restaurateur]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Création d'une fonction pour modifier un profil restaurateur
+
     public function update(Request $request)
     {
         $restaurateur = Auth::user();
@@ -81,12 +71,8 @@ class RestaurateurController extends Controller
         return response()->json(["message" => "Modifier le profil", 'restaurateur' => $restaurateur]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Création d'une fonction pour supprimer un profil restaurateur
+
     public function destroy()
     {
         $restaurateur = Auth::user();
@@ -95,6 +81,14 @@ class RestaurateurController extends Controller
 
         return response()->json(["message" => true, 'restaurateur' => $restaurateur]);
     }
+
+    // ******************************************************* //
+
+    // FIN METHODE CRUD //
+
+    // ******************************************************* //
+
+    // Création d'une fonction pour se connecter
 
     public function login(Request $request)
     {
@@ -114,6 +108,8 @@ class RestaurateurController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
+
+    // Création d'une fonction pour se déconnecter
 
     public function logout(Request $request)
     {

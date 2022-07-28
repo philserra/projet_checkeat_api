@@ -9,37 +9,11 @@ use PHPUnit\Framework\Constraint\IsTrue;
 
 class RestaurantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $user = Auth::user();
-        $restaurants = $user->restaurants;
-        return response()->json(['restaurants' => $restaurants]);
-    }
 
+    // METHODE CRUD //
 
+    // Création d'une fonction pour créer un/des restaurant(s)
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -70,72 +44,55 @@ class RestaurantController extends Controller
         return response()->json(['message' => true, 'restaurant' => $restaurant]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // Création d'une fonction pour afficher un/des restaurant(s)
+
+    public function profile()
     {
-        $restaurants = Restaurant::findOrFail($id);
-        return response()->json([
-            "restaurants" => $restaurants
-        ]);
+        $user = Auth::user();
+        $restaurants = $user->restaurants;
+        return response()->json(["message" => "Resto crée", 'restaurants' => $restaurants]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $restaurants = Restaurant::findOrFail($id);
-        return response()->json([
-            "restaurants" => $restaurants
-        ]);
-    }
+    // Création d'une fonction pour modifier un/des restaurant(s)
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $restaurants = Restaurant::findOrFail($id);
+        $user_id = Auth::id();
 
-        $restaurants->name = $request->name;
-        $restaurants->adress = $request->adress;
-        $restaurants->zip = $request->zip;
-        $restaurants->city = $request->city;
-        $restaurants->tel = $request->tel;
-        $restaurants->email = $request->email;
-        $restaurants->timetable = $request->timetable;
-        $restaurants->capacity = $request->capacity;
-        $restaurants->id_restaurateur = $request->id_restaurateur;
+        $restaurant = Restaurant::where([
+            ["id", $id],
+            ["id_restaurateur", $user_id]
+        ])->firstOrFail();
 
-        $restaurants->save();
+        $restaurant->name = $request->name;
+        $restaurant->adress = $request->adress;
+        $restaurant->zip = $request->zip;
+        $restaurant->city = $request->city;
+        $restaurant->tel = $request->tel;
+        $restaurant->email = $request->email;
+        $restaurant->timetable = $request->timetable;
+        $restaurant->capacity = $request->capacity;
+        $restaurant->id_restaurateur = $request->id_restaurateur;
 
-        return response()->json(['restaurants' => $restaurants]);
+        $restaurant->save();
+
+        return response()->json(["message" => "Resto modifié"]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Création d'une fonction pour supprimer un/des restaurant(s)
+
+
     public function destroy($id)
     {
-        $restaurants = Restaurant::findOrFail($id);
+        $user_id = Auth::id();
 
-        $restaurants->delete();
+        Restaurant::where([
+            ["id", $id],
+            ["id_restaurateur", $user_id]
+        ])->delete();
 
-        return response()->json(["message" => true, 'restaurants' => $restaurants]);
+        return response()->json(["message" => true]);
     }
+
+    // FIN METHODE CRUD //
 }
