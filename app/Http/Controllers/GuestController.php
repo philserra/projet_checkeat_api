@@ -10,7 +10,7 @@ class GuestController extends Controller
 
     public function index()
     {
-        $restaurant = Restaurant::all();
-        return response()->json(["restaurant" => $restaurant]);
+        $restaurants = Restaurant::all();
+        return response()->json(["restaurants" => $restaurants]);
     }
 }

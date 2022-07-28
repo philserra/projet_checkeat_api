@@ -62,7 +62,10 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        return response()->json([
+            "menu" => $menu
+        ]);
     }
 
     /**
