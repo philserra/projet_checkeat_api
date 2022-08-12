@@ -50,7 +50,7 @@ class RestaurateurController extends Controller
     public function profile()
     {
         $restaurateur = Auth::user();
-        return response()->json(["message" => "Profil crée", 'restaurateur' => $restaurateur]);
+        return response()->json(['restaurateur' => $restaurateur]);
     }
 
     // Création d'une fonction pour modifier un profil restaurateur

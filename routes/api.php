@@ -45,3 +45,7 @@ Route::resource('/menu', MenuController::class);
 // Création route pour afficher les restaurants en tant que client(s)
 
 Route::get('/guests', [GuestController::class, 'index'])->name('guest.index');
+Route::get('/guestmenu', [GuestController::class, 'showmenu'])->name('guest.showmenu');
+
+// Récupération des restaurants d'UN RESTAURATEUR
+Route::get('/test', [MenuController::class, 'findRestaurant'])->middleware('auth:sanctum');

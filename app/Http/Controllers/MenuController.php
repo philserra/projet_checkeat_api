@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -15,6 +17,15 @@ class MenuController extends Controller
         return response()->json(["liste" => $liste]);
     }
 
+    public function findRestaurant()
+    {
+
+        $user = Auth::id();
+
+        $findUser = DB::table('restaurants')->where('id_restaurateur', $user)->get('id');
+        return response()->json(['info' => $findUser]);
+    }
+
     public function create()
     {
         //
@@ -23,7 +34,7 @@ class MenuController extends Controller
     public function store(Request $request)
     {
 
-        $id_restaurant = Auth::id();
+
 
         $menu = Menu::create([
             "name" => $request->name,
@@ -31,13 +42,15 @@ class MenuController extends Controller
             "priceHt" => $request->priceHt,
             "tva" => $request->tva,
             'priceTtc' => round($request->priceHt * ($request->tva + 100) / 100, 2,  PHP_ROUND_HALF_UP), // Calcul du prix TTC avec arrondi à 2 décimales
-            'id_restaurant' => $id_restaurant,
+            'id_restaurant' => $request->id_restaurant
 
 
         ]);
 
         return response()->json(["message" == true, "menu" => $menu]);
     }
+
+
 
     public function show($id)
     {
