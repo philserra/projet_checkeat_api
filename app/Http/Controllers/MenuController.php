@@ -11,18 +11,21 @@ use Illuminate\Support\Facades\DB;
 class MenuController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
-        $liste = Menu::all();
+        // $liste = Menu::all();
+        $liste = DB::table('menus')->where('id_restaurant', $id)->get();
         return response()->json(["liste" => $liste]);
     }
 
-    public function findRestaurant()
+    public function findRestaurant($id)
     {
 
-        $user = Auth::id();
+        // $user = Auth::id();
 
-        $findUser = DB::table('restaurants')->where('id_restaurateur', $user)->get('id');
+        // $findUser = DB::table('restaurants')->where('id_restaurateur', $user)->get('id');
+
+        $findUser = Restaurant::findOrFail($id);
         return response()->json(['info' => $findUser]);
     }
 
@@ -33,7 +36,6 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-
 
 
         $menu = Menu::create([

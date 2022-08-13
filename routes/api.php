@@ -35,12 +35,12 @@ Route::middleware('auth:sanctum')->get('/restaurants/{id}', [RestaurantControlle
 // Création de 4 routes MENUS pour la méthode CRUD
 
 // menu
-Route::resource('/menu', MenuController::class);
+// Route::resource('/menu', MenuController::class);
 
-// Route::middleware('auth:sanctum')->post('/menu', [MenuController::class, 'store'])->name("menu.store");
-// Route::middleware('auth:sanctum')->get('/menu', [MenuController::class, 'index'])->name("menu.index");
-// Route::middleware('auth:sanctum')->put('/menu', [MenuController::class, 'update'])->name("menu.update");
-// Route::middleware('auth:sanctum')->delete('/menu', [MenuController::class, 'destroy'])->name("menu.destroy");
+Route::middleware('auth:sanctum')->post('/menu', [MenuController::class, 'store'])->name("menu.store");
+Route::middleware('auth:sanctum')->get('/menu/{id}', [MenuController::class, 'index'])->name("menu.index");
+Route::middleware('auth:sanctum')->put('/menu', [MenuController::class, 'update'])->name("menu.update");
+Route::middleware('auth:sanctum')->delete('/menu', [MenuController::class, 'destroy'])->name("menu.destroy");
 
 // Création route pour afficher les restaurants en tant que client(s)
 
@@ -48,4 +48,4 @@ Route::get('/guests', [GuestController::class, 'index'])->name('guest.index');
 Route::get('/guestmenu', [GuestController::class, 'showmenu'])->name('guest.showmenu');
 
 // Récupération des restaurants d'UN RESTAURATEUR
-Route::get('/test', [MenuController::class, 'findRestaurant'])->middleware('auth:sanctum');
+Route::get('/test/{id}', [MenuController::class, 'findRestaurant'])->middleware('auth:sanctum');
