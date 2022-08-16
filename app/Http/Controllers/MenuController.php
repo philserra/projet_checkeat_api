@@ -14,20 +14,13 @@ class MenuController extends Controller
     public function index($id)
     {
         // $liste = Menu::all();
+
+        // Récupération des plats D'UN restaurant
         $liste = DB::table('menus')->where('id_restaurant', $id)->get();
         return response()->json(["liste" => $liste]);
     }
 
-    public function findRestaurant($id)
-    {
 
-        // $user = Auth::id();
-
-        // $findUser = DB::table('restaurants')->where('id_restaurateur', $user)->get('id');
-
-        $findUser = Restaurant::findOrFail($id);
-        return response()->json(['info' => $findUser]);
-    }
 
     public function create()
     {

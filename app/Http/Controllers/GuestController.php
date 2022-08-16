@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
@@ -15,9 +16,9 @@ class GuestController extends Controller
         return response()->json(["restaurants" => $restaurants]);
     }
 
-    public function showmenu()
+    public function showmenu($id)
     {
-        $menu = Menu::all();
+        $menu = DB::table('menus')->where('id_restaurant', $id)->get();
         return response()->json(["menu" => $menu]);
     }
 }
