@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderedController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RestaurateurController;
 use App\Http\Controllers\UserController;
@@ -48,3 +49,9 @@ Route::middleware('auth:sanctum')->delete('/menu', [MenuController::class, 'dest
 
 Route::get('/guests', [GuestController::class, 'index'])->name('guest.index');
 Route::get('/guestmenu/{id}', [GuestController::class, 'showmenu'])->name('guest.showmenu');
+
+// Affichage des commandes passées par les clients
+Route::middleware('auth:sanctum')->get('/ordered', [OrderedController::class, 'index'])->name('ordered.index');
+
+// Création ordered passées par les clients
+Route::post('/ordered', [OrderedController::class, 'store'])->name('ordered.store');
