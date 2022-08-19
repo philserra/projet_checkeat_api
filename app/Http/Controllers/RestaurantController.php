@@ -23,7 +23,8 @@ class RestaurantController extends Controller
             'city' => 'required|string',
             'tel' => 'required|numeric',
             'email' => 'required|email',
-            'timetable' => 'required|numeric',
+            'open' => 'required|',
+            'closed' => 'required|',
             'capacity' => 'required|numeric',
         ]);
 
@@ -36,7 +37,8 @@ class RestaurantController extends Controller
             'city' => $request->city,
             'tel' => $request->tel,
             'email' => $request->email,
-            'timetable' => $request->timetable,
+            'open' => $request->open,
+            'closed' => $request->closed,
             'capacity' => $request->capacity,
             'id_restaurateur' => $id_restaurateur,
         ]);
@@ -70,7 +72,8 @@ class RestaurantController extends Controller
         $restaurant->city = $request->city;
         $restaurant->tel = $request->tel;
         $restaurant->email = $request->email;
-        $restaurant->timetable = $request->timetable;
+        $restaurant->open = $request->open;
+        $restaurant->closed = $request->closed;
         $restaurant->capacity = $request->capacity;
 
         $restaurant->save();

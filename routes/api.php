@@ -52,6 +52,7 @@ Route::get('/guestmenu/{id}', [GuestController::class, 'showmenu'])->name('guest
 
 // Affichage des commandes passées par les clients
 Route::middleware('auth:sanctum')->get('/ordered', [OrderedController::class, 'index'])->name('ordered.index');
+Route::middleware('auth:sanctum')->put('/ordered/{id}', [OrderedController::class, 'update'])->name('ordered.upadtes');
 
 // Création ordered passées par les clients
 Route::post('/ordered', [OrderedController::class, 'store'])->name('ordered.store');

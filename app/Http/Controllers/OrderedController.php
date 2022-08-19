@@ -29,4 +29,21 @@ class OrderedController extends Controller
 
         return response()->json(["message" => 'Commande envoyé', "ordered" => $ordered]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $ordered = Ordered::where([
+            ["id", $id]
+        ])->firstOrFail();
+
+        $ordered->price = $request->price;
+        $ordered->name = $request->name;
+        $ordered->status = $request->status;
+        $ordered->total = $request->total;
+
+
+        $ordered->save();
+
+        return response()->json(['oredered' => $ordered]);
+    }
 }

@@ -18,7 +18,9 @@ return new class extends Migration
             $table->float('price');
             $table->string('name');
             $table->float('total');
+            $table->integer('id_command');
             $table->integer('id_restaurant');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('adress');
             $table->integer('zip');
             $table->string('city');
-            $table->string('tel');
+            $table->integer('tel');
             $table->string('email');
-            $table->string('timetable');
+            $table->string('open');
+            $table->string('closed');
             $table->integer('capacity');
             $table->unsignedBigInteger('id_restaurateur')->nullable();
             $table->rememberToken();
