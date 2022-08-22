@@ -22,6 +22,8 @@ class OrderedController extends Controller
             "price" => $request->price,
             "total" => $request->total,
             "id_restaurant" => $request->id_restaurant,
+            "id_command" => $request->id_command,
+            "status" => $request->status,
 
 
 
