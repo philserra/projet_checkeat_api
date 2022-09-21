@@ -56,3 +56,4 @@ Route::middleware('auth:sanctum')->put('/ordered/{id}', [OrderedController::clas
 
 // Création ordered passées par les clients
 Route::post('/ordered', [OrderedController::class, 'store'])->name('ordered.store');
+Route::get('/payment/{id_command}', [OrderedController::class, 'orderedpayment'])->name('orderedpayment');

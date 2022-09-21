@@ -38,14 +38,27 @@ class OrderedController extends Controller
             ["id", $id]
         ])->firstOrFail();
 
-        $ordered->price = $request->price;
-        $ordered->name = $request->name;
+
         $ordered->status = $request->status;
-        $ordered->total = $request->total;
 
 
         $ordered->save();
 
         return response()->json(['oredered' => $ordered]);
+    }
+
+    public function orderedpayment($id_command)
+    {
+        $orderedPayment = Ordered::where([
+            ["id_command", $id_command]
+        ])->get();
+
+
+
+
+
+
+
+        return response()->json(['orderedpayment' => $orderedPayment]);
     }
 }
